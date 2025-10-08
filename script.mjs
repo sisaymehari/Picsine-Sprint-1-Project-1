@@ -1,7 +1,7 @@
 
 
-import { getUserIds } from './common.mjs';
-import { getData, addData } from './storage.mjs';
+import { getUserIds } from './public/common.mjs';
+import { getData, addData } from './public/storage.mjs';
 
 // --- Build page structure ---
 const h1 = document.createElement('h1');
