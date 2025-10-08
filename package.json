@@ -1,9 +1,24 @@
 {
+  "name": "forsis",
+  "version": "1.0.0",
+  "description": "At Code Your Future, we like to use a learning technique called spaced repetition. The technique involves reviewing a topic over increasing time gaps (e.g. after one week, one month, three months, six months, one year).",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
     "http-server": "^14.1.1",
-    "nodemon": "^3.1.10",
-    "type": "module"
-
-  }
-  
+    "nodemon": "^3.1.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sisaymehari/Picsine-Sprint-1-Project-1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sisaymehari/Picsine-Sprint-1-Project-1/issues"
+  },
+  "homepage": "https://github.com/sisaymehari/Picsine-Sprint-1-Project-1#readme"
 }
