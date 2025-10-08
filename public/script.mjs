@@ -1,5 +1,5 @@
 import { getUserIds } from "./common.mjs";
-import { getData, addData } from "./storage.mjs";
+import { getData, addData, clearData } from "./storage.mjs";
 
 // --- Build page structure ---
 const h1 = document.createElement("h1");
@@ -65,11 +65,13 @@ deleteBtn.addEventListener("click", () => {
   } else {
     var result = confirm(`Want to delete topic of ${userId}?`);
     if (result) {
-      localStorage.removeItem(`stored-data-user-${userId}`);
+      clearData(userId);
       renderAgenda(userId);
     }
   }
 });
+
+
 
 form.append(topicLabel, topicInput, dateLabel, dateInput, submitBtn, deleteBtn);
 
@@ -194,7 +196,7 @@ function renderList(items) {
     const formattedDate = `${getDayWithSuffix(day)} ${month} ${year}`;
 
     const li = document.createElement("li");
-    li.textContent = `${topic} - ${formattedDate}`;
+    li.textContent = `${topic}, ${formattedDate}`;
     agendaList.appendChild(li);
   }
 }
