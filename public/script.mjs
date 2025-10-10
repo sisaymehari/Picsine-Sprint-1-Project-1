@@ -31,6 +31,7 @@ agendaList.id = "agendaList";
 const form = document.createElement("form");
 form.id = "addForm";
 
+// --- Topic input ---
 const topicLabel = document.createElement("label");
 topicLabel.textContent = "Topic: ";
 topicLabel.setAttribute("for", "topicInput");
@@ -40,7 +41,10 @@ topicInput.type = "text";
 topicInput.id = "topicInput";
 topicInput.required = true;
 topicInput.placeholder = "Enter topic name";
+// --- Inline style for touch target ---
+topicInput.style.padding = "0.5em";
 
+// --- Date input ---
 const dateLabel = document.createElement("label");
 dateLabel.textContent = "Start Date: ";
 dateLabel.setAttribute("for", "dateInput");
@@ -50,20 +54,30 @@ dateInput.type = "date";
 dateInput.id = "dateInput";
 dateInput.required = true;
 dateInput.valueAsDate = new Date(); // default to today
+// --- Inline style for touch target ---
+dateInput.style.padding = "0.5em";
 
+// --- Buttons ---
 const submitBtn = document.createElement("button");
 submitBtn.type = "submit";
 submitBtn.textContent = "Add Topic";
+submitBtn.setAttribute("aria-label", "Add Topic");
+// --- Inline style for touch target ---
+submitBtn.style.padding = "0.7em 1em";
 
 const deleteBtn = document.createElement("button");
 deleteBtn.textContent = "Delete Topic";
 deleteBtn.type = "button"; // Prevent form submission
+deleteBtn.setAttribute("aria-label", "Delete Topic");
+// --- Inline style for touch target ---
+deleteBtn.style.padding = "0.7em 1em";
+
 deleteBtn.addEventListener("click", () => {
   const userId = userSelect.value;
   if (!userId) {
     alert("Please select a user first.");
   } else {
-    var result = confirm(`Want to delete topic of ${userId}?`);
+    const result = confirm(`Want to delete topic of ${userId}?`);
     if (result) {
       clearData(userId);
       renderAgenda(userId);
@@ -71,9 +85,21 @@ deleteBtn.addEventListener("click", () => {
   }
 });
 
+// --- Wrap inputs and buttons in fieldsets for accessibility ---
+const topicField = document.createElement("fieldset");
+const topicLegend = document.createElement("legend");
+topicLegend.textContent = "Topic Details";
+topicField.appendChild(topicLegend);
+topicField.append(topicLabel, topicInput);
 
+const dateField = document.createElement("fieldset");
+dateField.append(dateLabel, dateInput);
 
-form.append(topicLabel, topicInput, dateLabel, dateInput, submitBtn, deleteBtn);
+const buttonField = document.createElement("fieldset");
+buttonField.append(submitBtn, deleteBtn);
+
+// Append fieldsets to form
+form.append(topicField, dateField, buttonField);
 
 // Add all elements to body
 document.body.append(
